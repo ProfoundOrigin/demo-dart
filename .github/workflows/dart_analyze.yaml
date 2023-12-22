@@ -14,6 +14,10 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: beta
+      - name: Tailscale
+        uses: tailscale/github-action@v1
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
       - name: Dart Analyze
         run: dart analyze > dart_analyze.txt || true
       - name: Dart Analyze to SARIF
