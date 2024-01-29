@@ -11,6 +11,10 @@ import 'package:path/path.dart' as path;
 typedef HelloWorldFunc = ffi.Void Function();
 // Dart type definition for calling the C foreign function
 typedef HelloWorld = void Function();
+// FFI signature of the hello_world C function
+typedef HelloWorldFunc = ffi.Void Function();
+// Dart type definition for calling the C foreign function
+typedef HelloWorld = void Function();
 
 void main() {
   // Open the dynamic library
