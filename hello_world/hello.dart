@@ -9,6 +9,10 @@ import 'package:path/path.dart' as path;
 
 // FFI signature of the hello_world C function
 typedef HelloWorldFunc = ffi.Void Function();
+// FFI signature of the hello_world C function
+typedef HelloWorldFunc = ffi.Void Function();
+// Dart type definition for calling the C foreign function
+typedef HelloWorld = void Function();
 // Dart type definition for calling the C foreign function
 typedef HelloWorld = void Function();
 
