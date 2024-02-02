@@ -21,4 +21,4 @@ jobs:
           ref: ${{ github.action_ref }}
           analyzer: "dart-analyze"
           deepsource-dsn: ${{ secrets.DEEPSOURCE_DSN }}
-          version: "beta"
+          extra-data-json: '{"sdk":"beta"}'
