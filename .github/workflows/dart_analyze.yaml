@@ -11,27 +11,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart@v1
-        with:
-          sdk: beta
       - name: Tailscale
         uses: tailscale/github-action@v1
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
-      - name: Dart Analyze
-        run: dart analyze > dart_analyze.txt || true
-      - name: Dart Analyze to SARIF
-        uses: advanced-security/dart-analyzer-sarif@main
+      - name: Scan files
+        uses: yash-deepsource/community-analyzers-action@main
         with:
-          input: dart_analyze.txt
-          output: dart_analyze.sarif
-      - name: Upload SARIF to DeepSource
-        run: |
-          # Install the CLI
-          curl https://deepsource.io/cli | sh
-
-          # Send the report to DeepSource
-          ./bin/deepsource report --analyzer dart-analyze --analyzer-type community --value-file ./dart_analyze.sarif
-        
-        env:
-          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
+          ref: ${{ github.action_ref }}
+          analyzer: "dart-analyze"
+          deepsource-dsn: ${{ secrets.DEEPSOURCE_DSN }}
+          extra-data-json: '{"sdk":"beta"}'
